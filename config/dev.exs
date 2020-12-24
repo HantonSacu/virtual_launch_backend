@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :launch, Launch.Repo, show_sensitive_data_on_connection_error: true
+config :mpg_samsung_launch, MpgSamsungLaunch.Repo, show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -9,7 +9,7 @@ config :launch, Launch.Repo, show_sensitive_data_on_connection_error: true
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :launch, LaunchWeb.Endpoint,
+config :mpg_samsung_launch, MpgSamsungLaunchWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -48,7 +48,7 @@ config :launch, LaunchWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :launch, LaunchWeb.Endpoint,
+config :mpg_samsung_launch, MpgSamsungLaunchWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

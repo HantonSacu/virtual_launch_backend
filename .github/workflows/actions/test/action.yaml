@@ -38,10 +38,6 @@ runs:
       run: mix format --check-formatted
       shell: bash
 
-    - name: Run dialyzer
-      run: mix dialyzer
-      shell: bash
-
     - name: "Reset database"
       run: MIX_ENV=test mix ecto.reset
       shell: bash
@@ -52,17 +48,4 @@ runs:
 
     - name: Check migrations reversibility
       run: MIX_ENV=test mix ecto.rollback --all
-      shell: bash
-
-    - name: Check OTP release
-      run: |
-        mix release --overwrite
-
-        # generate config and load to env vars, so release can use the correct database
-        set -a && source <(MIX_ENV=test mix run -e "IO.puts(LaunchConfig.template())" | egrep "#.*=" | sed "s/# //")
-
-        _build/prod/rel/launch/bin/migrate.sh
-        _build/prod/rel/launch/bin/seed.sh
-        _build/prod/rel/launch/bin/launch eval "{:ok, _} = Application.ensure_all_started(:launch)"
-        _build/prod/rel/launch/bin/rollback.sh --all
       shell: bash

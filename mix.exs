@@ -1,9 +1,9 @@
-defmodule Launch.MixProject do
+defmodule MpgSamsungLaunch.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :launch,
+      app: :mpg_samsung_launch,
       version: "0.1.0",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -24,7 +24,7 @@ defmodule Launch.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {LaunchApp, []},
+      mod: {MpgSamsungLaunchApp, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -38,8 +38,11 @@ defmodule Launch.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bamboo_ses, "~> 0.1.0"},
       {:boundary, "~> 0.6"},
       {:ecto_sql, "~> 3.4"},
+      {:ex_aws, "~> 2.0"},
+      {:ex_aws_ses, "~> 2.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:mox, "~> 0.5", only: :test},
@@ -85,11 +88,11 @@ defmodule Launch.MixProject do
   end
 
   defp operator_template(_),
-    do: IO.puts(LaunchConfig.template())
+    do: IO.puts(MpgSamsungLaunchConfig.template())
 
   defp releases() do
     [
-      launch: [
+      mpg_samsung_launch: [
         include_executables_for: [:unix],
         steps: [:assemble, &copy_bin_files/1]
       ]

@@ -13,20 +13,20 @@ config :sentry,
   enable_source_code_context: true,
   root_source_code_path: File.cwd!(),
   included_environments: ~w(prod stage develop preview),
-  release: Launch.MixProject.project()[:version]
+  release: MpgSamsungLaunch.MixProject.project()[:version]
 
-config :launch, Launch.Repo,
+config :mpg_samsung_launch, MpgSamsungLaunch.Repo,
   adapter: Ecto.Adapters.Postgres,
   migration_primary_key: [type: :binary_id],
   migration_timestamps: [type: :utc_datetime_usec],
-  otp_app: :launch
+  otp_app: :mpg_samsung_launch
 
-config :launch, ecto_repos: [Launch.Repo], generators: [binary_id: true]
+config :mpg_samsung_launch, ecto_repos: [MpgSamsungLaunch.Repo], generators: [binary_id: true]
 
 # Configures the endpoint
-config :launch, LaunchWeb.Endpoint,
-  render_errors: [view: LaunchWeb.ErrorView, accepts: ["html", "json"], layout: false],
-  pubsub_server: Launch.PubSub,
+config :mpg_samsung_launch, MpgSamsungLaunchWeb.Endpoint,
+  render_errors: [view: MpgSamsungLaunchWeb.Error.View, accepts: ["html", "json"], layout: false],
+  pubsub_server: MpgSamsungLaunch.PubSub,
   live_view: [signing_salt: "i/BeocKU"]
 
 # Configures Elixir's Logger
@@ -36,6 +36,17 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :mpg_samsung_launch, Oban, repo: MpgSamsungLaunch.Repo, queues: [email: 10]
+
+config :mpg_samsung_launch, MpgSamsungLaunch.Mailer, adapter: Bamboo.LocalAdapter
+
+config :ex_aws,
+  access_key_id: [{:system, "AWS_ACCESS_KEY_ID"}, :instance_role],
+  secret_access_key: [{:system, "AWS_SECRET_ACCESS_KEY"}, :instance_role]
+
+config :ex_aws,
+  json_codec: Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   web:
-    image: "launch:latest"
+    image: "mpg_samsung_launch:latest"
     ports:
       - "4000:4000"
     depends_on:

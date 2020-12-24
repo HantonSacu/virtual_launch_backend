@@ -6,7 +6,7 @@
 DEFAULT_GOAL: help
 
 # TODO read database name from Mix.Config
-PGDATABASE?=launch_backend_dev
+PGDATABASE?=mpg_samsung_launch_backend_dev
 
 
 export LOCAL_USER_ID ?= $(shell id -u $$USER)
@@ -52,7 +52,7 @@ reseed-db: reset-db seed-db
 devstack-build:
 	@docker build --ssh default .\
 		--target build \
-		--tag launch:latest
+		--tag mpg_samsung_launch:latest
 
 ## Stops all development containers
 devstack-clean:

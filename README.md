@@ -1,4 +1,4 @@
-# Launch
+# MpgSamsungLaunch
 
 TODO: add project overview here
 
