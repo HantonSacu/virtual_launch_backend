@@ -15,13 +15,7 @@
         {Credo.Check.Readability.SinglePipe, []},
         {Credo.Check.Readability.Specs, []},
         {Credo.Check.Readability.WithCustomTaggedTuple, []},
-
-        # custom VBT checks
-        {VBT.Credo.Check.Consistency.FileLocation,
-         ignore_folder_namespace: %{
-           "lib/launch_web" => ~w/channels controllers views/,
-           "test/launch_web" => ~w/channels controllers views/
-         }},
+        {VBT.Credo.Check.Consistency.FileLocation, []},
         {VBT.Credo.Check.Consistency.ModuleLayout, []},
         {VBT.Credo.Check.Graphql.MutationField, []},
         {VBT.Credo.Check.Readability.MultilineSimpleDo, []},

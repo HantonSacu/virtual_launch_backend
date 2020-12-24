@@ -1,0 +1,10 @@
+/* Tailwind setup */
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.alert:empty { display: none; }
+.invalid-feedback {color: #CD5C5C}
